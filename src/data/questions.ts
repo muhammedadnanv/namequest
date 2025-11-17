@@ -449,6 +449,113 @@ export const questionBank: Question[] = [
     question: "What is the primary color that cannot be made by mixing other colors?",
     options: ["Green", "Orange", "Red", "Purple"],
     correctAnswer: 2
+  },
+
+  // Indian General Knowledge Questions
+  {
+    id: 61,
+    category: "Indian General Knowledge",
+    question: "What is the capital of India?",
+    options: ["Mumbai", "New Delhi", "Bangalore", "Kolkata"],
+    correctAnswer: 1
+  },
+  {
+    id: 62,
+    category: "Indian General Knowledge",
+    question: "Who is known as the Father of the Nation in India?",
+    options: ["Jawaharlal Nehru", "Subhas Chandra Bose", "Mahatma Gandhi", "Bhagat Singh"],
+    correctAnswer: 2
+  },
+  {
+    id: 63,
+    category: "Indian General Knowledge",
+    question: "In which year did India gain independence?",
+    options: ["1945", "1947", "1950", "1952"],
+    correctAnswer: 1
+  },
+  {
+    id: 64,
+    category: "Indian General Knowledge",
+    question: "What is the national animal of India?",
+    options: ["Lion", "Elephant", "Bengal Tiger", "Peacock"],
+    correctAnswer: 2
+  },
+  {
+    id: 65,
+    category: "Indian General Knowledge",
+    question: "Which is the longest river in India?",
+    options: ["Yamuna", "Ganga", "Brahmaputra", "Godavari"],
+    correctAnswer: 1
+  },
+  {
+    id: 66,
+    category: "Indian General Knowledge",
+    question: "Who was the first Prime Minister of India?",
+    options: ["Mahatma Gandhi", "Jawaharlal Nehru", "Sardar Patel", "Dr. Rajendra Prasad"],
+    correctAnswer: 1
+  },
+  {
+    id: 67,
+    category: "Indian General Knowledge",
+    question: "What is the national sport of India?",
+    options: ["Cricket", "Football", "Hockey", "Kabaddi"],
+    correctAnswer: 2
+  },
+  {
+    id: 68,
+    category: "Indian General Knowledge",
+    question: "Which Indian city is known as the 'Silicon Valley of India'?",
+    options: ["Hyderabad", "Pune", "Bangalore", "Chennai"],
+    correctAnswer: 2
+  },
+  {
+    id: 69,
+    category: "Indian General Knowledge",
+    question: "Who wrote the Indian National Anthem 'Jana Gana Mana'?",
+    options: ["Bankim Chandra Chatterjee", "Rabindranath Tagore", "Sarojini Naidu", "Subhas Chandra Bose"],
+    correctAnswer: 1
+  },
+  {
+    id: 70,
+    category: "Indian General Knowledge",
+    question: "What is the currency of India?",
+    options: ["Rupee", "Dollar", "Pound", "Yen"],
+    correctAnswer: 0
+  },
+  {
+    id: 71,
+    category: "Indian General Knowledge",
+    question: "Which monument is also known as the 'Symbol of Love'?",
+    options: ["Red Fort", "Qutub Minar", "Taj Mahal", "India Gate"],
+    correctAnswer: 2
+  },
+  {
+    id: 72,
+    category: "Indian General Knowledge",
+    question: "How many states are there in India?",
+    options: ["27", "28", "29", "30"],
+    correctAnswer: 1
+  },
+  {
+    id: 73,
+    category: "Indian General Knowledge",
+    question: "Which Indian festival is known as the 'Festival of Lights'?",
+    options: ["Holi", "Diwali", "Durga Puja", "Eid"],
+    correctAnswer: 1
+  },
+  {
+    id: 74,
+    category: "Indian General Knowledge",
+    question: "Who was the first President of India?",
+    options: ["Dr. Rajendra Prasad", "Dr. S. Radhakrishnan", "Dr. Zakir Husain", "V.V. Giri"],
+    correctAnswer: 0
+  },
+  {
+    id: 75,
+    category: "Indian General Knowledge",
+    question: "Which is the highest civilian award in India?",
+    options: ["Padma Vibhushan", "Padma Bhushan", "Bharat Ratna", "Padma Shri"],
+    correctAnswer: 2
   }
 ];
 
