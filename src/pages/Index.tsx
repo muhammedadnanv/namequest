@@ -1,13 +1,36 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from "react";
+import NameEntry from "@/components/NameEntry";
+import Quiz from "@/components/Quiz";
+import { getQuestionsForName, Question } from "@/data/questions";
 
 const Index = () => {
+  const [userName, setUserName] = useState<string>("");
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [quizStarted, setQuizStarted] = useState(false);
+
+  const handleStart = (name: string) => {
+    setUserName(name);
+    const selectedQuestions = getQuestionsForName(name);
+    setQuestions(selectedQuestions);
+    setQuizStarted(true);
+  };
+
+  const handleRestart = () => {
+    setUserName("");
+    setQuestions([]);
+    setQuizStarted(false);
+  };
+
+  if (!quizStarted) {
+    return <NameEntry onStart={handleStart} />;
+  }
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <Quiz 
+      questions={questions}
+      userName={userName}
+      onRestart={handleRestart}
+    />
   );
 };
 
