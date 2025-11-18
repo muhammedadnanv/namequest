@@ -1,68 +1,108 @@
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 import { Input } from "@/components/ui/input";
-import { Brain } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+
+interface StudentInfo {
+  name: string;
+  phone: string;
+  class: string;
+}
 
 interface NameEntryProps {
-  onStart: (name: string) => void;
+  onStart: (studentInfo: StudentInfo) => void;
 }
 
 const NameEntry = ({ onStart }: NameEntryProps) => {
-  const [name, setName] = useState("");
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    class: "",
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (name.trim()) {
-      onStart(name.trim());
+    if (formData.name.trim() && formData.phone.trim() && formData.class.trim()) {
+      onStart(formData);
     }
+  };
+
+  const handleChange = (field: string, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-background to-secondary/30 p-4">
-      <div className="w-full max-w-md animate-fade-in">
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-primary to-primary-hover mb-6 shadow-[var(--shadow-medium)] animate-scale-in">
-            <Brain className="w-10 h-10 text-primary-foreground" />
+      <div className="w-full max-w-md">
+        <div className="bg-card rounded-2xl shadow-[var(--shadow-large)] p-8 border border-border/50 backdrop-blur-sm animate-fade-in">
+          <div className="text-center mb-8">
+            <h1 className="text-4xl font-bold mb-3 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+              Student Quiz Competition
+            </h1>
+            <p className="text-muted-foreground">
+              Enter your details to begin the quiz challenge
+            </p>
           </div>
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-primary-hover bg-clip-text text-transparent mb-3">
-            Quiz Master
-          </h1>
-          <p className="text-muted-foreground text-lg">
-            Test your knowledge across multiple categories
-          </p>
-        </div>
 
-        <div className="bg-card rounded-2xl shadow-[var(--shadow-soft)] p-8 border border-border/50 backdrop-blur-sm animate-slide-up">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
-              <label htmlFor="name" className="text-sm font-medium text-card-foreground">
-                Enter your name to begin
-              </label>
+              <Label htmlFor="name">Full Name *</Label>
               <Input
                 id="name"
                 type="text"
-                placeholder="Your name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="h-12 text-lg border-border/50 focus:border-primary transition-all duration-300"
-                autoFocus
+                placeholder="Enter your full name"
+                value={formData.name}
+                onChange={(e) => handleChange("name", e.target.value)}
+                className="h-12 text-base"
+                required
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="phone">Phone Number *</Label>
+              <Input
+                id="phone"
+                type="tel"
+                placeholder="Enter your phone number"
+                value={formData.phone}
+                onChange={(e) => handleChange("phone", e.target.value)}
+                className="h-12 text-base"
+                required
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="class">Class *</Label>
+              <Input
+                id="class"
+                type="text"
+                placeholder="Enter your class (e.g., 10th Grade)"
+                value={formData.class}
+                onChange={(e) => handleChange("class", e.target.value)}
+                className="h-12 text-base"
+                required
               />
             </div>
 
             <Button 
               type="submit" 
-              disabled={!name.trim()}
-              className="w-full h-12 text-lg font-semibold bg-gradient-to-r from-primary to-primary-hover hover:shadow-[var(--shadow-medium)] transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]"
+              className="w-full h-12 text-base font-semibold"
+              disabled={!formData.name.trim() || !formData.phone.trim() || !formData.class.trim()}
             >
               Start Quiz
             </Button>
-          </form>
 
-          <div className="mt-6 pt-6 border-t border-border/30">
-            <p className="text-sm text-muted-foreground text-center">
-              You'll receive <span className="font-semibold text-primary">5 unique questions</span> tailored just for you
-            </p>
-          </div>
+            <Button 
+              type="button"
+              variant="outline"
+              onClick={() => navigate("/admin")}
+              className="w-full h-12 text-base"
+            >
+              Teacher Login
+            </Button>
+          </form>
         </div>
       </div>
     </div>

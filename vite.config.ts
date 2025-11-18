@@ -17,9 +17,9 @@ export default defineConfig(({ mode }) => ({
       registerType: "autoUpdate",
       includeAssets: ["favicon.png", "logo-192.png", "logo-512.png"],
       manifest: {
-        name: "Quiz Master - Indian General Knowledge",
-        short_name: "Quiz Master",
-        description: "Test your Indian General Knowledge with Quiz Master - an engaging quiz app covering history, geography, culture, and more!",
+        name: "Student Quiz Competition",
+        short_name: "StudentQuiz",
+        description: "Test your Indian general knowledge in interactive quiz competitions with secure result tracking",
         theme_color: "#3b82f6",
         background_color: "#ffffff",
         display: "standalone",

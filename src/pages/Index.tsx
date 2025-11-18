@@ -3,32 +3,38 @@ import NameEntry from "@/components/NameEntry";
 import Quiz from "@/components/Quiz";
 import { getQuestionsForName, Question } from "@/data/questions";
 
+interface StudentInfo {
+  name: string;
+  phone: string;
+  class: string;
+}
+
 const Index = () => {
-  const [userName, setUserName] = useState<string>("");
+  const [studentInfo, setStudentInfo] = useState<StudentInfo | null>(null);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [quizStarted, setQuizStarted] = useState(false);
 
-  const handleStart = (name: string) => {
-    setUserName(name);
-    const selectedQuestions = getQuestionsForName(name);
+  const handleStart = (info: StudentInfo) => {
+    setStudentInfo(info);
+    const selectedQuestions = getQuestionsForName(info.name);
     setQuestions(selectedQuestions);
     setQuizStarted(true);
   };
 
   const handleRestart = () => {
-    setUserName("");
+    setStudentInfo(null);
     setQuestions([]);
     setQuizStarted(false);
   };
 
-  if (!quizStarted) {
+  if (!quizStarted || !studentInfo) {
     return <NameEntry onStart={handleStart} />;
   }
 
   return (
     <Quiz 
       questions={questions}
-      userName={userName}
+      studentInfo={studentInfo}
       onRestart={handleRestart}
     />
   );
