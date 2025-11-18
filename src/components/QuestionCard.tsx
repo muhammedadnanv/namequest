@@ -1,6 +1,5 @@
 import { Question } from "@/data/questions";
 import { Button } from "@/components/ui/button";
-import { CheckCircle2, XCircle } from "lucide-react";
 
 interface QuestionCardProps {
   question: Question;
@@ -10,40 +9,14 @@ interface QuestionCardProps {
 }
 
 const QuestionCard = ({ question, selectedAnswer, isAnswered, onAnswerSelect }: QuestionCardProps) => {
-  const getButtonVariant = (optionIndex: number) => {
-    if (!isAnswered) return "outline";
-    if (optionIndex === question.correctAnswer) return "default";
-    if (optionIndex === selectedAnswer && optionIndex !== question.correctAnswer) return "destructive";
-    return "outline";
-  };
-
   const getButtonClasses = (optionIndex: number) => {
     const baseClasses = "h-auto py-4 px-6 text-left justify-start transition-all duration-300 transform";
     
-    if (!isAnswered) {
-      return `${baseClasses} hover:scale-[1.02] hover:shadow-[var(--shadow-soft)] active:scale-[0.98]`;
+    if (selectedAnswer === optionIndex) {
+      return `${baseClasses} bg-primary text-primary-foreground hover:bg-primary/90`;
     }
     
-    if (optionIndex === question.correctAnswer) {
-      return `${baseClasses} bg-success hover:bg-success border-success text-success-foreground shadow-[var(--shadow-soft)] scale-[1.02]`;
-    }
-    
-    if (optionIndex === selectedAnswer && optionIndex !== question.correctAnswer) {
-      return `${baseClasses} bg-destructive hover:bg-destructive border-destructive text-destructive-foreground shadow-[var(--shadow-soft)]`;
-    }
-    
-    return `${baseClasses} opacity-50`;
-  };
-
-  const getIcon = (optionIndex: number) => {
-    if (!isAnswered) return null;
-    if (optionIndex === question.correctAnswer) {
-      return <CheckCircle2 className="w-5 h-5 flex-shrink-0" />;
-    }
-    if (optionIndex === selectedAnswer && optionIndex !== question.correctAnswer) {
-      return <XCircle className="w-5 h-5 flex-shrink-0" />;
-    }
-    return null;
+    return `${baseClasses} hover:scale-[1.02] hover:shadow-[var(--shadow-soft)] active:scale-[0.98]`;
   };
 
   return (
@@ -61,7 +34,7 @@ const QuestionCard = ({ question, selectedAnswer, isAnswered, onAnswerSelect }: 
         {question.options.map((option, index) => (
           <Button
             key={index}
-            variant={getButtonVariant(index)}
+            variant="outline"
             onClick={() => onAnswerSelect(index)}
             disabled={isAnswered}
             className={getButtonClasses(index)}
@@ -71,7 +44,6 @@ const QuestionCard = ({ question, selectedAnswer, isAnswered, onAnswerSelect }: 
                 {String.fromCharCode(65 + index)}
               </span>
               <span className="flex-1 text-base font-medium">{option}</span>
-              {getIcon(index)}
             </span>
           </Button>
         ))}

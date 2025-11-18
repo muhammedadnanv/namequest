@@ -31,7 +31,7 @@ const Quiz = ({ questions, userName, onRestart }: QuizProps) => {
       setScore(score + 1);
     }
 
-    // Auto-advance to next question or show results
+    // Immediately advance to next question or show results
     setTimeout(() => {
       if (currentQuestionIndex < totalQuestions - 1) {
         setCurrentQuestionIndex(currentQuestionIndex + 1);
@@ -40,7 +40,7 @@ const Quiz = ({ questions, userName, onRestart }: QuizProps) => {
       } else {
         setShowResults(true);
       }
-    }, 1500);
+    }, 300);
   };
 
   if (showResults) {
@@ -61,9 +61,6 @@ const Quiz = ({ questions, userName, onRestart }: QuizProps) => {
           <div className="flex items-center justify-between text-sm">
             <span className="font-medium text-muted-foreground">
               Question {currentQuestionIndex + 1} of {totalQuestions}
-            </span>
-            <span className="font-semibold text-card-foreground">
-              Score: {score}
             </span>
           </div>
           <ProgressBar current={currentQuestionIndex + 1} total={totalQuestions} />
