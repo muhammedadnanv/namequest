@@ -4,18 +4,25 @@ import QuestionCard from "./QuestionCard";
 import ProgressBar from "./ProgressBar";
 import Results from "./Results";
 
+interface StudentInfo {
+  name: string;
+  phone: string;
+  class: string;
+}
+
 interface QuizProps {
   questions: Question[];
-  userName: string;
+  studentInfo: StudentInfo;
   onRestart: () => void;
 }
 
-const Quiz = ({ questions, userName, onRestart }: QuizProps) => {
+const Quiz = ({ questions, studentInfo, onRestart }: QuizProps) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [isAnswered, setIsAnswered] = useState(false);
   const [showResults, setShowResults] = useState(false);
+  const [userAnswers, setUserAnswers] = useState<number[]>([]);
 
   const currentQuestion = questions[currentQuestionIndex];
   const totalQuestions = questions.length;
@@ -25,6 +32,10 @@ const Quiz = ({ questions, userName, onRestart }: QuizProps) => {
 
     setSelectedAnswer(answerIndex);
     setIsAnswered(true);
+
+    // Store user's answer
+    const newAnswers = [...userAnswers, answerIndex];
+    setUserAnswers(newAnswers);
 
     // Check if answer is correct
     if (answerIndex === currentQuestion.correctAnswer) {
@@ -46,9 +57,11 @@ const Quiz = ({ questions, userName, onRestart }: QuizProps) => {
   if (showResults) {
     return (
       <Results 
-        userName={userName}
+        studentInfo={studentInfo}
         score={score}
         totalQuestions={totalQuestions}
+        questions={questions}
+        userAnswers={userAnswers}
         onRestart={onRestart}
       />
     );
